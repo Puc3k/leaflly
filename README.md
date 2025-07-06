@@ -1,22 +1,55 @@
-# Leaflly - API for managing indoor plants
-## General Info
-This application features a REST API built on Laravel, documented using Scribe. It empowers users to seamlessly handle their home plant collections, offering functionalities like adding, editing, and removing plants. Moreover, it incorporates automatic push notifications sent directly to users' mobile devices.
+# 🌿 Leaflly – Smart Plant Care API (Laravel)
 
-## Technologies
-Project is created with:
-* PHP 8.1
-* Laravel 10.10
-* Scribe 4.25
+**Leaflly** is a backend application built with **Laravel 10** that provides a full-featured REST API for managing indoor plant collections. It supports user authentication, plant database browsing, personal collections, notes, and a flexible notification system. Designed as a backend layer for future SPA or mobile frontend integration.
 
-## Application functionalities:
+---
 
-- User registration and login
-- User profile editing
-- Displaying a list of plants and accessing information about the requirements of a specific plant
-- Browsing individual species/types of plants
-- Plant identification through uploading a photo
-- Adding plants to one's collection
-- Setting watering reminders
-- Planning care procedures such as fertilizing, repotting, pruning
-- Adding notes and/or reminders
-- Searching for a plant by its Polish and Latin name
+## 🚀 Features
+
+- ✅ User registration and login
+- ✅ Email verification during signup
+- ✅ Password reset
+- ✅ Browse plant database
+- ✅ Filter/search plants by criteria
+- ✅ Add and manage user’s own plant collection
+- ✅ Customize plants (name, location, last watering date)
+- ✅ Add personal notes for each plant
+- ✅ View upcoming care reminders
+- ✅ Mark tasks (e.g. watering) as completed
+- ✅ Configure notification types
+- ✅ Push/email notifications
+
+---
+
+## 🛠️ Tech Stack
+
+- Laravel 10
+- PHP 8.x
+- MySQL
+- Sanctum (authentication)
+- Push notifications Firebase + kreait/firebase-php
+- Laravel Validation, Eloquent, Policies
+- REST API (JSON)
+- Documentation Scribe
+
+---
+
+## ⚙️ Local Installation
+
+```bash
+git clone https://github.com/Puc3k/leaflly.git
+cd leaflly
+
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+## 📷 Screenshots
+(Coming soon – to be added in the /public/screenshots/ folder)
+
+## 📄 API Documentation
+Leaflly uses Laravel Scribe to auto-generate API documentation.
+You can view it locally after running the app at:
+
+http://localhost:8000/docs
