@@ -1,0 +1,2209 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/leaflly.pl"
+        }
+    ],
+    "info": {
+        "name": "Leaflly",
+        "_postman_id": "3145ad5a-b375-42cd-b623-a0deb0d3b133",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Note",
+            "description": "\nApi for notes management",
+            "item": [
+                {
+                    "name": "Get all notes",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "",
+                                    "description": "optional Include associated user plants in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "title%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact title.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "content%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact content.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact status.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "categories%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact categories.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "priority%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact priority.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "priority%5Blt%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by priority less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "priority%5Bgt%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by priority greater than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "photo_path%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact photo path.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "user_plant_id%5Beq%5D",
+                                    "value": "",
+                                    "description": "optional Filter notes by exact user plant ID.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/note?includeUserPlants=&title%5Beq%5D=&content%5Beq%5D=&status%5Beq%5D=&categories%5Beq%5D=&priority%5Beq%5D=&priority%5Blt%5D=&priority%5Bgt%5D=&photo_path%5Beq%5D=&user_plant_id%5Beq%5D="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of notes with optional filters and includes related user plant data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":21,\"title\":\"repellendus\",\"content\":\"Dolorem cupiditate mollitia consequuntur totam.\",\"status\":\"aktywna\",\"categories\":\"Wydarzenia\",\"priority\":623699120,\"photo_path\":null,\"user_plant_id\":2},{\"id\":22,\"title\":\"minima\",\"content\":\"Et quas laborum quis quis ea repellat assumenda cumque.\",\"status\":\"wa\\u017cna\",\"categories\":\"\\u015arodowisko\",\"priority\":1867508646,\"photo_path\":null,\"user_plant_id\":20}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new note",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/note"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"bngqxwzmwfozkefgvxba\",\"content\":\"suegneafkxndfvxvwkht\",\"status\":\"tmkgnpexgudhssdhuwixniwiw\",\"categories\":\"Podlewanie\",\"priority\":5,\"photo_path\":\"jfvucovdgowaanljkcquvesl\",\"user_plant_id\":20}"
+                        },
+                        "description": "Stores a new note record in the database based on the provided information."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show a note",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note\/:id",
+                            "query": [
+                                {
+                                    "key": "includeUserPlant",
+                                    "value": "1",
+                                    "description": "optional Include associated user plant in the response.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/note\/:id?includeUserPlant=1",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the note to be shown."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves detailed information about a specific note. Optionally includes related user plant data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":23,\"title\":\"ut\",\"content\":\"Ipsam quis atque vero et qui.\",\"status\":\"inna\",\"categories\":\"Historia ro\\u015bliny\",\"priority\":1811835657,\"photo_path\":null,\"user_plant_id\":16}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a note",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/note\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the note to be updated."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"civrc\",\"content\":\"fki\",\"status\":\"jxu\",\"categories\":\"Lista zakup\u00f3w\",\"priority\":4,\"photo_path\":\"tfedcptejsfo\",\"user_plant_id\":16}"
+                        },
+                        "description": "Updates the details of an existing note based on the provided information."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":24,\"title\":\"veritatis\",\"content\":null,\"status\":\"wa\\u017cna\",\"categories\":\"Inspiracje i pomys\\u0142y\",\"priority\":949816581,\"photo_path\":null,\"user_plant_id\":13}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a note",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/note\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the note to be deleted."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Removes a specified note from the database."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Note Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/note-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of all available note types.\nThis endpoint is useful for understanding the different types of notes that can be created or managed."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Note Statuses",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note-statuses",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/note-statuses"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of all possible statuses for notes.\nThis endpoint helps in identifying the various stages or states a note can be in."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Notification",
+            "description": "\nApi for notifications management",
+            "item": [
+                {
+                    "name": "Get all notifications",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notification",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "",
+                                    "description": "optional Include associated user plants in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "sent_on%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by read status of the notification.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "type%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by notification type.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "title%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by notification title.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "notification_date%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by the exact notification date.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "notification_date%5Blt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by notification date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "notification_date%5Bgt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by notification date being greater than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "created_at%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by the exact creation date.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "created_at%5Blt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by creation date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "created_at%5Bgt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by creation date being greater than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "updated_at%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by the exact update date.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "updated_at%5Blt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by update date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "updated_at%5Bgt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by update date being greater than.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/notification?includeUserPlants=&sent_on%5Beq%5D=&type%5Beq%5D=&title%5Beq%5D=&notification_date%5Beq%5D=&notification_date%5Blt%5D=&notification_date%5Bgt%5D=&created_at%5Beq%5D=&created_at%5Blt%5D=&created_at%5Bgt%5D=&updated_at%5Beq%5D=&updated_at%5Blt%5D=&updated_at%5Bgt%5D="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of notifications with optional filters and includes related user plant data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":26,\"type\":\"Podlewanie\",\"title\":\"Non aperiam omnis nemo rerum excepturi enim nemo.\",\"message\":\"Asperiores quod occaecati est. Ut consequatur odio veniam rem qui. Harum eligendi inventore sit eum laborum laudantium. Ex est animi laboriosam eligendi.\",\"notification_date\":\"2024-01-25 15:59:35\",\"sent_on\":null,\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"},{\"id\":27,\"type\":\"Przesadzanie\",\"title\":\"Sint omnis quos nisi alias optio.\",\"message\":\"Id cupiditate officia in est. Repudiandae quia cumque asperiores alias minus ut numquam. Eveniet suscipit corrupti consequuntur est. Quas eveniet iste mollitia esse doloremque itaque.\",\"notification_date\":\"2024-01-25 13:59:20\",\"sent_on\":null,\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notification",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notification"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"type\":\"fnpjwpghrub\",\"title\":\"kulorr\",\"message\":\"zlxdiyedt\",\"notification_date\":\"2106-08-15\",\"sent_on\":\"2024-01-14T21:54:26\",\"user_plant_id\":7}"
+                        },
+                        "description": "Creates a new notification and associates it with a specified user plant."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":28,\"type\":\"Podlewanie\",\"title\":\"Rerum ipsum eveniet ad commodi aut et.\",\"message\":\"Aperiam dolorem sit est rerum quae quae quo. Amet est id nesciunt. Enim natus laboriosam et consectetur vitae. Corrupti impedit et sed nesciunt.\",\"notification_date\":\"2024-01-25 01:36:24\",\"sent_on\":null,\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show a notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notification\/:id",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "1",
+                                    "description": "optional Include associated user plants in the response.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/notification\/:id?includeUserPlants=1",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the notification to retrieve."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves details of a specific notification. Can optionally include associated user plant data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":29,\"type\":\"Nawo\\u017cenie\",\"title\":\"Ut dolores dignissimos facere natus.\",\"message\":\"Iusto facilis voluptatem architecto labore. Illo ducimus non qui voluptatum commodi ut exercitationem. Rerum animi hic excepturi saepe nisi dignissimos eveniet.\",\"notification_date\":\"2024-01-24 03:54:35\",\"sent_on\":null,\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notification\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notification\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the notification to be updated."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"type\":null,\"title\":null,\"notification_date\":null,\"sent_on\":null}"
+                        },
+                        "description": "Updates the specified notification with provided details."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":30,\"type\":\"Inne\",\"title\":\"Id qui velit officia nemo delectus sint.\",\"message\":\"Quod cum id unde animi quidem. Unde quas est ea qui aspernatur mollitia. Quidem et deleniti impedit assumenda deleniti facilis.\",\"notification_date\":\"2024-01-26 03:51:57\",\"sent_on\":null,\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notification\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notification\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the notification to be deleted."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Permanently deletes the specified notification from the database. This action is irreversible."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Notification Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notification-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notification-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of all available notification types.\nThis endpoint is useful for understanding the different types of notifications that can be sent or received in the system."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Plant",
+            "description": "\nApi for plants management",
+            "item": [
+                {
+                    "name": "Get all plants",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/plant",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "",
+                                    "description": "Include associated user plants in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "%22Ficus%22",
+                                    "description": "Allows searching for plants by name or species.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "name%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by plant name.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "species%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by plant species.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "plant_type%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by plant types.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "soil_type%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by soil type.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "target_height%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by target height (equal).",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "insolation%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by insolation.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "cultivation_difficulty%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by cultivation difficulty.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "temperature%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by temperature.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "air_humidity%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by air humidity.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "toxicity%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by toxicity. Example:",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "ph%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by soil pH. Example:",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/plant?includeUserPlants=&search=%22Ficus%22&name%5Beq%5D=&species%5Beq%5D=&plant_type%5Beq%5D=&soil_type%5Beq%5D=&target_height%5Beq%5D=&insolation%5Beq%5D=&cultivation_difficulty%5Beq%5D=&temperature%5Beq%5D=&air_humidity%5Beq%5D=&toxicity%5Beq%5D=&ph%5Beq%5D="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of plants with optional filters and includes for related user plants."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new plant",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/plant",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/plant"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"psvqpf\",\"description\":\"Et eligendi velit sed quia itaque dolor numquam illum.\",\"species\":\"emcumbbiw\",\"plant_type\":\"nppxerdzkxrsznqbalnu\",\"image\":\"xugzdjqnhesgmyhnnc\",\"soil_type\":\"eimdhqq\",\"target_height\":\"aut\",\"insolation\":\"mdvmgitulgetfihjqtv\",\"cultivation_difficulty\":\"uvcqwuwhfzqyitprxcex\",\"temperature\":\"qla\",\"air_humidity\":\"hcttvqpouscbkniuc\",\"toxicity\":11,\"ph\":\"ioxgyehtvguhoovfqgpnqzsrolqmx\"}"
+                        },
+                        "description": "Stores a new plant record in the database."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show a plant",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/plant\/:id",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "1",
+                                    "description": "optional Include associated user plants in the response.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/plant\/:id?includeUserPlants=1",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the plant."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves detailed information about a specific plant. Optionally includes related user plant data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":49,\"name\":\"enim aut quis\",\"description\":\"Quos voluptates in temporibus ut magnam eum quo ut.\",\"species\":\"doloremque vel\",\"plant_type\":\"Ro\\u015bliny kwitn\\u0105ce\",\"image\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/00bbee?text=libero\",\"soil_type\":\"pod\\u0142o\\u017ce do uprawy hydroponicznej\",\"target_height\":\"53\",\"insolation\":\"p\\u00f3\\u0142cie\\u0144\",\"cultivation_difficulty\":\"trudny\",\"temperature\":\"25\\u00b0C - 31\\u00b0C\",\"air_humidity\":\"36% - 63%\",\"toxicity\":2,\"ph\":\"5.07 - 9.78\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a plant",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/plant\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/plant\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the plant to be updated."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"iyyy\",\"description\":\"Consequatur dolores dignissimos perferendis qui dolorem.\",\"species\":\"thabzkkngbfzwbghigh\",\"plant_type\":\"junn\",\"image\":\"g\",\"soil_type\":\"nlxhybgsu\",\"target_height\":\"id\",\"insolation\":\"pzarqusbdcgepxxeayi\",\"cultivation_difficulty\":\"aosvcwsfzgs\",\"temperature\":\"vygebmtzzu\",\"air_humidity\":\"ynivwmka\",\"toxicity\":11,\"ph\":\"asqkgyrdvyfcwziirxuhaouhgikkhnialsgsal\"}"
+                        },
+                        "description": "Updates the details of an existing plant based on the provided information."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":50,\"name\":\"rem qui voluptas\",\"description\":\"Est cupiditate quas omnis quas est expedita.\",\"species\":\"aut dignissimos\",\"plant_type\":\"Ro\\u015bliny pn\\u0105ce i zwisaj\\u0105ce\",\"image\":\"https:\\\/\\\/via.placeholder.com\\\/640x480.png\\\/008888?text=autem\",\"soil_type\":\"pod\\u0142o\\u017ce do uprawy hydroponicznej\",\"target_height\":\"83\",\"insolation\":\"p\\u00f3\\u0142cie\\u0144\",\"cultivation_difficulty\":\"trudny\",\"temperature\":\"11\\u00b0C - 33\\u00b0C\",\"air_humidity\":\"42% - 56%\",\"toxicity\":1,\"ph\":\"5.91 - 9.68\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a plant",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/plant\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/plant\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the plant to be deleted."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Removes a specified plant from the database."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get plant types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/plant-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/plant-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns an array of strings, each representing a distinct type of plant.\nThis endpoint is useful for populating dropdowns or filters in the UI."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Soil Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/soil-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/soil-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of all available soil types for plants.\nUseful for filters and understanding suitable soil conditions for different plants."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Insolation Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/insolation-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/insolation-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of all available insolation types.\nThis helps in understanding the amount and intensity of sunlight required by different plants."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Difficulty Types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/difficulty-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/difficulty-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of different difficulty levels for growing and maintaining plants.\nUseful for users to select plants based on their gardening experience."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Push notifications",
+            "description": "",
+            "item": [
+                {
+                    "name": "Save Device Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/save-token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/save-token"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"token\":\"your-device-token\"}"
+                        },
+                        "description": "Saves the FCM device token to the authenticated user's profile."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Send a Push Notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/send-notification",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/send-notification"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"deviceToken\":\"quibusdam\",\"title\":\"nulla\",\"body\":\"dolores\"}"
+                        },
+                        "description": "Sends a push notification to a specified device token using Firebase Cloud Messaging (FCM)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Send a Test Notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/test-notification",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/test-notification"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"token\":\"your-device-token\"}"
+                        },
+                        "description": "Sends a test push notification to a specified device token. This endpoint is useful for testing the push notification functionality in the development environment."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "description": "\nApi for users management",
+            "item": [
+                {
+                    "name": "Get all users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "",
+                                    "description": "Include associated user plants in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "name%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by user name.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "email%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by email address.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "email_verified_at%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by the exact date and time when the email was verified.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "email_verified_at%5Blt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by email verified date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "email_verified_at%5Bgt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by email verified date being greater than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "created_at%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by exact creation date.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "created_at%5Blt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by creation date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "created_at%5Bgt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by creation date being greater than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "updated_at%5Beq%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by exact update date.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "updated_at%5Blt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by update date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "updated_at%5Bgt%5D",
+                                    "value": "",
+                                    "description": "datetime Filter by update date being greater than.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/user?includeUserPlants=&name%5Beq%5D=&email%5Beq%5D=&email_verified_at%5Beq%5D=&email_verified_at%5Blt%5D=&email_verified_at%5Bgt%5D=&created_at%5Beq%5D=&created_at%5Blt%5D=&created_at%5Bgt%5D=&updated_at%5Beq%5D=&updated_at%5Blt%5D=&updated_at%5Bgt%5D="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of users with optional filters and includes for related user plants."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":42,\"name\":\"Karley Skiles\",\"email\":\"kreiger.gust@example.org\",\"email_verified_at\":\"2024-01-14T21:54:26.000000Z\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"},{\"id\":43,\"name\":\"Prof. Myron Stoltenberg MD\",\"email\":\"mbrown@example.com\",\"email_verified_at\":\"2024-01-14T21:54:26.000000Z\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get a single user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user\/:id",
+                            "query": [
+                                {
+                                    "key": "includeUserPlants",
+                                    "value": "",
+                                    "description": "optional Include associated user plants in the response.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/user\/:id?includeUserPlants=",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user to retrieve."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves the details of a specific user and optionally includes related user plant data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":44,\"name\":\"Nettie Sanford\",\"email\":\"kschmitt@example.net\",\"email_verified_at\":\"2024-01-14T21:54:26.000000Z\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user to update."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"lnvoikznhtzpvjhi\",\"email\":\"dominique28@example.net\",\"current_password\":\"currentPassword123\",\"password\":\"qui\",\"password_confirmation\":\"newPassword123\"}"
+                        },
+                        "description": "Updates the specified user's details. Fields are updated only if they are provided."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":45,\"name\":\"Fatima Heathcote\",\"email\":\"karlie77@example.com\",\"email_verified_at\":\"2024-01-14T21:54:26.000000Z\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the user to be deleted."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Permanently deletes the specified user from the database. This action is irreversible."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User Authentication",
+            "description": "User authentication endpoints.",
+            "item": [
+                {
+                    "name": "Logout user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"userId\":2}"
+                        },
+                        "description": "Logs out the specified user by invalidating their access token."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"message\": \"User successfully logged out\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\": \"User not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Register User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"natus\",\"email\":\"hhickle@example.org\",\"password\":\":}K*wGk&\",\"password_confirmation\":null}"
+                        },
+                        "description": "Register a new user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"status\": true, \"message\": \"User Created Successfully\", \"token\": \"API TOKEN\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"status\": false, \"message\": \"Validation error\", \"errors\": {}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\"status\": false, \"message\": \"Internal Server Error\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Login User",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"ygleichner@example.com\",\"password\":\"FC|9NEA.7\\\"\"}"
+                        },
+                        "description": "Log in a user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"status\": true, \"message\": \"User Logged In Successfully\", \"token\": \"API TOKEN\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"status\": false, \"message\": \"Email & Password does not match with our record.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\"status\": false, \"message\": \"Internal Server Error\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Forgot Password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/forgot-password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/forgot-password"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"user@example.com\"}"
+                        },
+                        "description": "Request a password reset link for a user with the given email."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"passwords.sent\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n    \"message\": \"Nie uda\u0142o si\u0119 wys\u0142a\u0107 linku resetuj\u0105cego has\u0142o.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Verify a user's email address.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/verify-email\/:id\/:hash",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/verify-email\/:id\/:hash",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quos",
+                                    "description": "The ID of the verify email."
+                                },
+                                {
+                                    "id": "hash",
+                                    "key": "hash",
+                                    "value": "error",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Verify the email address of a registered user using the provided $userId and $hash."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "6"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "5"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\User] quos\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset Password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "reset-password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/reset-password"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"token\":\"nesciunt\",\"email\":\"rey.lind@example.org\",\"password\":\"l@V}gP6BwIo^g'*\",\"password_confirmation\":\"doloribus\"}"
+                        },
+                        "description": "Reset the user's password."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"message\": \"Has\u0142o zosta\u0142o zresetowane.\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\"message\": \"Nie uda\u0142o si\u0119 zresetowa\u0107 has\u0142a.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UserPlants",
+            "description": "\nApi for user plants management",
+            "item": [
+                {
+                    "name": "Get all user plants",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/userPlant",
+                            "query": [
+                                {
+                                    "key": "includePlant",
+                                    "value": "",
+                                    "description": "Include associated plant in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "includeUser",
+                                    "value": "",
+                                    "description": "Include associated user in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "includeNotes",
+                                    "value": "",
+                                    "description": "Include associated notes in the response.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "%22Ficus%22",
+                                    "description": "Allows searching for plants by name or species.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "user_id%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by user ID.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "plant_id%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by plant ID.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "custom_name%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by custom name.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "location%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by location.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "last_watered%5Beq%5D",
+                                    "value": "",
+                                    "description": "Filter by exact last watered date.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "last_watered%5Blt%5D",
+                                    "value": "",
+                                    "description": "Filter by last watered date being less than.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "last_watered%5Bgt%5D",
+                                    "value": "",
+                                    "description": "Filter by last watered date being greater than.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/userPlant?includePlant=&includeUser=&includeNotes=&search=%22Ficus%22&user_id%5Beq%5D=&plant_id%5Beq%5D=&custom_name%5Beq%5D=&location%5Beq%5D=&last_watered%5Beq%5D=&last_watered%5Blt%5D=&last_watered%5Bgt%5D="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"includePlant\":true,\"includeNotes\":false,\"includeUser\":false}"
+                        },
+                        "description": "Retrieves a list of user plants with optional filters and includes for related entities."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":21,\"user_id\":1,\"plant_id\":43,\"custom_name\":\"amet non optio\",\"location\":\"inna\",\"last_watered\":\"2024-01-02 11:09:25\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"},{\"id\":22,\"user_id\":39,\"plant_id\":2,\"custom_name\":\"voluptates voluptatem neque\",\"location\":\"balkon\",\"last_watered\":\"2024-01-03 08:56:40\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created user's plant in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/userPlant",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/userPlant"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":3,\"plant_id\":10,\"custom_name\":\"oklknckkyjwayar\",\"location\":\"rmsoshwaurrmwiwrmgkycydps\",\"last_watered\":\"2024-01-14T21:54:26\"}"
+                        },
+                        "description": "Creates and stores a new user's plant in the database."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":23,\"user_id\":23,\"plant_id\":6,\"custom_name\":\"repellendus velit veritatis\",\"location\":\"\\u0142azienka\",\"last_watered\":\"2024-01-02 12:32:59\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get a single UserPlant with relations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/userPlant\/:id",
+                            "query": [
+                                {
+                                    "key": "includePlant",
+                                    "value": "1",
+                                    "description": "Optional parameter to include plant details.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "includeNotes",
+                                    "value": "1",
+                                    "description": "Optional parameter to include plant notes.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "includeUser",
+                                    "value": "1",
+                                    "description": "Optional parameter to include user details.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/userPlant\/:id?includePlant=1&includeNotes=1&includeUser=1",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the userPlant."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"includePlant\":true,\"includeNotes\":true,\"includeUser\":true}"
+                        },
+                        "description": "Retrieve a single UserPlant and optionally include its related entities such as notes and user details."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":24,\"user_id\":28,\"plant_id\":42,\"custom_name\":\"quo sit impedit\",\"location\":\"pok\\u00f3j dzieci\",\"last_watered\":\"2024-01-01 12:05:41\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update a UserPlant",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/userPlant\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/userPlant\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the User Plant to be updated."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":20,\"plant_id\":19,\"custom_name\":\"pghxhlryffcvomvhsfho\",\"location\":\"sbqvfvnjrat\",\"last_watered\":\"2024-01-14T21:54:26\"}"
+                        },
+                        "description": "Update the details of a UserPlant with given ID. Allows updating the associated plant, user, custom name, location, and last watered date."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":25,\"user_id\":38,\"plant_id\":8,\"custom_name\":\"reprehenderit libero iure\",\"location\":\"sypialnia\",\"last_watered\":\"2024-01-06 22:48:03\",\"created_at\":\"2024-01-14T21:54:26.000000Z\",\"updated_at\":\"2024-01-14T21:54:26.000000Z\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove a UserPlant",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/userPlant\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/userPlant\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the UserPlant to remove."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Removes a specified UserPlant resource from storage."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Ro\u015blina u\u017cytkownika zosta\u0142a pomy\u015blnie usuni\u0119ty.\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"Nie znaleziono ro\u015bliny u\u017cytkownika o podanym identyfikatorze.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Available Locations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/userPlant-locations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/userPlant-locations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retrieves a list of all available locations where plants can be placed or are being maintained.\nThis endpoint is useful for users looking to understand where they can place or find their plants."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "User Roles",
+            "description": "",
+            "item": [
+                {
+                    "name": "Add a role to a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users\/:user_id\/roles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/users\/:user_id\/roles",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"role\":\"editor\"}"
+                        },
+                        "description": "Assigns a specified role to a user. Only accessible by administrators."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Role added successfully\"\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"Role not found\"\n}",
+                            "name": "role not found"
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove a role from a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users\/:user_id\/roles\/:role_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/users\/:user_id\/roles\/:role_id",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                },
+                                {
+                                    "id": "role_id",
+                                    "key": "role_id",
+                                    "value": "1",
+                                    "description": "The ID of the role."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Detaches a specified role from a user. Only accessible by administrators."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Role removed successfully\"\n}",
+                            "name": "success"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "key",
+                "type": "string"
+            }
+        ]
+    }
+}

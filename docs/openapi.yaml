@@ -1,0 +1,3095 @@
+openapi: 3.0.3
+info:
+  title: Leaflly
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://leaflly.pl'
+paths:
+  /api/v1/note:
+    get:
+      summary: 'Get all notes'
+      operationId: getAllNotes
+      description: 'Retrieves a list of notes with optional filters and includes related user plant data.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'optional Include associated user plants in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'optional Include associated user plants in the response.'
+            example: null
+        -
+          in: query
+          name: 'title[eq]'
+          description: 'optional Filter notes by exact title.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'optional Filter notes by exact title.'
+            example: null
+        -
+          in: query
+          name: 'content[eq]'
+          description: 'optional Filter notes by exact content.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'optional Filter notes by exact content.'
+            example: null
+        -
+          in: query
+          name: 'status[eq]'
+          description: 'optional Filter notes by exact status.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'optional Filter notes by exact status.'
+            example: null
+        -
+          in: query
+          name: 'categories[eq]'
+          description: 'optional Filter notes by exact categories.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'optional Filter notes by exact categories.'
+            example: null
+        -
+          in: query
+          name: 'priority[eq]'
+          description: 'optional Filter notes by exact priority.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter notes by exact priority.'
+            example: null
+        -
+          in: query
+          name: 'priority[lt]'
+          description: 'optional Filter notes by priority less than.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter notes by priority less than.'
+            example: null
+        -
+          in: query
+          name: 'priority[gt]'
+          description: 'optional Filter notes by priority greater than.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter notes by priority greater than.'
+            example: null
+        -
+          in: query
+          name: 'photo_path[eq]'
+          description: 'optional Filter notes by exact photo path.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'optional Filter notes by exact photo path.'
+            example: null
+        -
+          in: query
+          name: 'user_plant_id[eq]'
+          description: 'optional Filter notes by exact user plant ID.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'optional Filter notes by exact user plant ID.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 21
+                      title: repellendus
+                      content: 'Dolorem cupiditate mollitia consequuntur totam.'
+                      status: aktywna
+                      categories: Wydarzenia
+                      priority: 623699120
+                      photo_path: null
+                      user_plant_id: 2
+                    -
+                      id: 22
+                      title: minima
+                      content: 'Et quas laborum quis quis ea repellat assumenda cumque.'
+                      status: ważna
+                      categories: Środowisko
+                      priority: 1867508646
+                      photo_path: null
+                      user_plant_id: 20
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 21
+                        title: repellendus
+                        content: 'Dolorem cupiditate mollitia consequuntur totam.'
+                        status: aktywna
+                        categories: Wydarzenia
+                        priority: 623699120
+                        photo_path: null
+                        user_plant_id: 2
+                      -
+                        id: 22
+                        title: minima
+                        content: 'Et quas laborum quis quis ea repellat assumenda cumque.'
+                        status: ważna
+                        categories: Środowisko
+                        priority: 1867508646
+                        photo_path: null
+                        user_plant_id: 20
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 21
+                        title:
+                          type: string
+                          example: repellendus
+                        content:
+                          type: string
+                          example: 'Dolorem cupiditate mollitia consequuntur totam.'
+                        status:
+                          type: string
+                          example: aktywna
+                        categories:
+                          type: string
+                          example: Wydarzenia
+                        priority:
+                          type: integer
+                          example: 623699120
+                        photo_path:
+                          type: string
+                          example: null
+                        user_plant_id:
+                          type: integer
+                          example: 2
+      tags:
+        - Note
+    post:
+      summary: 'Create a new note'
+      operationId: createANewNote
+      description: 'Stores a new note record in the database based on the provided information.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bngqxwzmwfozkefgvxba
+                content:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: suegneafkxndfvxvwkht
+                status:
+                  type: string
+                  description: 'Must not be greater than 56 characters.'
+                  example: tmkgnpexgudhssdhuwixniwiw
+                  enum:
+                    - aktywna
+                    - archiwalne
+                    - ważna
+                    - inna
+                categories:
+                  type: string
+                  description: ''
+                  example: Podlewanie
+                  enum:
+                    - 'Problemy i Choroby'
+                    - Podlewanie
+                    - Nawożenie
+                    - 'Inspiracje i pomysły'
+                    - 'Plan pielęgnacji'
+                    - Przycinanie
+                    - 'Historia rośliny'
+                    - Środowisko
+                    - 'Lista zakupów'
+                    - Wydarzenia
+                    - Inna
+                priority:
+                  type: integer
+                  description: ''
+                  example: 5
+                photo_path:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: jfvucovdgowaanljkcquvesl
+                user_plant_id:
+                  type: integer
+                  description: ''
+                  example: 20
+              required:
+                - title
+                - status
+                - priority
+                - user_plant_id
+  '/api/v1/note/{id}':
+    get:
+      summary: 'Show a note'
+      operationId: showANote
+      description: 'Retrieves detailed information about a specific note. Optionally includes related user plant data.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlant
+          description: 'optional Include associated user plant in the response.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'optional Include associated user plant in the response.'
+            example: true
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 23
+                    title: ut
+                    content: 'Ipsam quis atque vero et qui.'
+                    status: inna
+                    categories: 'Historia rośliny'
+                    priority: 1811835657
+                    photo_path: null
+                    user_plant_id: 16
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 23
+                      title:
+                        type: string
+                        example: ut
+                      content:
+                        type: string
+                        example: 'Ipsam quis atque vero et qui.'
+                      status:
+                        type: string
+                        example: inna
+                      categories:
+                        type: string
+                        example: 'Historia rośliny'
+                      priority:
+                        type: integer
+                        example: 1811835657
+                      photo_path:
+                        type: string
+                        example: null
+                      user_plant_id:
+                        type: integer
+                        example: 16
+      tags:
+        - Note
+    put:
+      summary: 'Update a note'
+      operationId: updateANote
+      description: 'Updates the details of an existing note based on the provided information.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 24
+                    title: veritatis
+                    content: null
+                    status: ważna
+                    categories: 'Inspiracje i pomysły'
+                    priority: 949816581
+                    photo_path: null
+                    user_plant_id: 13
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 24
+                      title:
+                        type: string
+                        example: veritatis
+                      content:
+                        type: string
+                        example: null
+                      status:
+                        type: string
+                        example: ważna
+                      categories:
+                        type: string
+                        example: 'Inspiracje i pomysły'
+                      priority:
+                        type: integer
+                        example: 949816581
+                      photo_path:
+                        type: string
+                        example: null
+                      user_plant_id:
+                        type: integer
+                        example: 13
+      tags:
+        - Note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: civrc
+                content:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: fki
+                status:
+                  type: string
+                  description: 'Must not be greater than 56 characters.'
+                  example: jxu
+                  enum:
+                    - aktywna
+                    - archiwalne
+                    - ważna
+                    - inna
+                categories:
+                  type: string
+                  description: ''
+                  example: 'Lista zakupów'
+                  enum:
+                    - 'Problemy i Choroby'
+                    - Podlewanie
+                    - Nawożenie
+                    - 'Inspiracje i pomysły'
+                    - 'Plan pielęgnacji'
+                    - Przycinanie
+                    - 'Historia rośliny'
+                    - Środowisko
+                    - 'Lista zakupów'
+                    - Wydarzenia
+                    - Inna
+                priority:
+                  type: integer
+                  description: ''
+                  example: 4
+                photo_path:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: tfedcptejsfo
+                user_plant_id:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - title
+                - content
+                - status
+                - categories
+                - priority
+                - photo_path
+                - user_plant_id
+    delete:
+      summary: 'Delete a note'
+      operationId: deleteANote
+      description: 'Removes a specified note from the database.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Note
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the note to be shown.'
+        example: '1'
+        required: true
+        schema:
+          type: string
+  /api/v1/note-types:
+    get:
+      summary: 'Get Note Types'
+      operationId: getNoteTypes
+      description: "Retrieves a list of all available note types.\nThis endpoint is useful for understanding the different types of notes that can be created or managed."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Note
+  /api/v1/note-statuses:
+    get:
+      summary: 'Get Note Statuses'
+      operationId: getNoteStatuses
+      description: "Retrieves a list of all possible statuses for notes.\nThis endpoint helps in identifying the various stages or states a note can be in."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Note
+  /api/v1/notification:
+    get:
+      summary: 'Get all notifications'
+      operationId: getAllNotifications
+      description: 'Retrieves a list of notifications with optional filters and includes related user plant data.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'optional Include associated user plants in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'optional Include associated user plants in the response.'
+            example: null
+        -
+          in: query
+          name: 'sent_on[eq]'
+          description: 'datetime Filter by read status of the notification.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by read status of the notification.'
+            example: null
+        -
+          in: query
+          name: 'type[eq]'
+          description: 'Filter by notification type.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by notification type.'
+            example: null
+        -
+          in: query
+          name: 'title[eq]'
+          description: 'Filter by notification title.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by notification title.'
+            example: null
+        -
+          in: query
+          name: 'notification_date[eq]'
+          description: 'datetime Filter by the exact notification date.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by the exact notification date.'
+            example: null
+        -
+          in: query
+          name: 'notification_date[lt]'
+          description: 'datetime Filter by notification date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by notification date being less than.'
+            example: null
+        -
+          in: query
+          name: 'notification_date[gt]'
+          description: 'datetime Filter by notification date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by notification date being greater than.'
+            example: null
+        -
+          in: query
+          name: 'created_at[eq]'
+          description: 'datetime Filter by the exact creation date.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by the exact creation date.'
+            example: null
+        -
+          in: query
+          name: 'created_at[lt]'
+          description: 'datetime Filter by creation date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by creation date being less than.'
+            example: null
+        -
+          in: query
+          name: 'created_at[gt]'
+          description: 'datetime Filter by creation date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by creation date being greater than.'
+            example: null
+        -
+          in: query
+          name: 'updated_at[eq]'
+          description: 'datetime Filter by the exact update date.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by the exact update date.'
+            example: null
+        -
+          in: query
+          name: 'updated_at[lt]'
+          description: 'datetime Filter by update date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by update date being less than.'
+            example: null
+        -
+          in: query
+          name: 'updated_at[gt]'
+          description: 'datetime Filter by update date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by update date being greater than.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 26
+                      type: Podlewanie
+                      title: 'Non aperiam omnis nemo rerum excepturi enim nemo.'
+                      message: 'Asperiores quod occaecati est. Ut consequatur odio veniam rem qui. Harum eligendi inventore sit eum laborum laudantium. Ex est animi laboriosam eligendi.'
+                      notification_date: '2024-01-25 15:59:35'
+                      sent_on: null
+                      created_at: '2024-01-14T21:54:26.000000Z'
+                      updated_at: '2024-01-14T21:54:26.000000Z'
+                    -
+                      id: 27
+                      type: Przesadzanie
+                      title: 'Sint omnis quos nisi alias optio.'
+                      message: 'Id cupiditate officia in est. Repudiandae quia cumque asperiores alias minus ut numquam. Eveniet suscipit corrupti consequuntur est. Quas eveniet iste mollitia esse doloremque itaque.'
+                      notification_date: '2024-01-25 13:59:20'
+                      sent_on: null
+                      created_at: '2024-01-14T21:54:26.000000Z'
+                      updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 26
+                        type: Podlewanie
+                        title: 'Non aperiam omnis nemo rerum excepturi enim nemo.'
+                        message: 'Asperiores quod occaecati est. Ut consequatur odio veniam rem qui. Harum eligendi inventore sit eum laborum laudantium. Ex est animi laboriosam eligendi.'
+                        notification_date: '2024-01-25 15:59:35'
+                        sent_on: null
+                        created_at: '2024-01-14T21:54:26.000000Z'
+                        updated_at: '2024-01-14T21:54:26.000000Z'
+                      -
+                        id: 27
+                        type: Przesadzanie
+                        title: 'Sint omnis quos nisi alias optio.'
+                        message: 'Id cupiditate officia in est. Repudiandae quia cumque asperiores alias minus ut numquam. Eveniet suscipit corrupti consequuntur est. Quas eveniet iste mollitia esse doloremque itaque.'
+                        notification_date: '2024-01-25 13:59:20'
+                        sent_on: null
+                        created_at: '2024-01-14T21:54:26.000000Z'
+                        updated_at: '2024-01-14T21:54:26.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 26
+                        type:
+                          type: string
+                          example: Podlewanie
+                        title:
+                          type: string
+                          example: 'Non aperiam omnis nemo rerum excepturi enim nemo.'
+                        message:
+                          type: string
+                          example: 'Asperiores quod occaecati est. Ut consequatur odio veniam rem qui. Harum eligendi inventore sit eum laborum laudantium. Ex est animi laboriosam eligendi.'
+                        notification_date:
+                          type: string
+                          example: '2024-01-25 15:59:35'
+                        sent_on:
+                          type: string
+                          example: null
+                        created_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - Notification
+    post:
+      summary: 'Create a new notification'
+      operationId: createANewNotification
+      description: 'Creates a new notification and associates it with a specified user plant.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 28
+                    type: Podlewanie
+                    title: 'Rerum ipsum eveniet ad commodi aut et.'
+                    message: 'Aperiam dolorem sit est rerum quae quae quo. Amet est id nesciunt. Enim natus laboriosam et consectetur vitae. Corrupti impedit et sed nesciunt.'
+                    notification_date: '2024-01-25 01:36:24'
+                    sent_on: null
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 28
+                      type:
+                        type: string
+                        example: Podlewanie
+                      title:
+                        type: string
+                        example: 'Rerum ipsum eveniet ad commodi aut et.'
+                      message:
+                        type: string
+                        example: 'Aperiam dolorem sit est rerum quae quae quo. Amet est id nesciunt. Enim natus laboriosam et consectetur vitae. Corrupti impedit et sed nesciunt.'
+                      notification_date:
+                        type: string
+                        example: '2024-01-25 01:36:24'
+                      sent_on:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - Notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: 'Must not be greater than 126 characters.'
+                  example: fnpjwpghrub
+                  enum:
+                    - Podlewanie
+                    - Zraszanie
+                    - Nawożenie
+                    - Przesadzanie
+                    - Kontrola
+                    - Oprysk
+                    - Przycinanie
+                    - Inne
+                title:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: kulorr
+                message:
+                  type: string
+                  description: 'Must not be greater than 3000 characters.'
+                  example: zlxdiyedt
+                notification_date:
+                  type: string
+                  description: 'Must be a valid date. Must be a date after or equal to <code>today</code>.'
+                  example: '2106-08-15'
+                sent_on:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-01-14T21:54:26'
+                user_plant_id:
+                  type: integer
+                  description: ''
+                  example: 7
+              required:
+                - type
+                - title
+                - notification_date
+                - sent_on
+                - user_plant_id
+  '/api/v1/notification/{id}':
+    get:
+      summary: 'Show a notification'
+      operationId: showANotification
+      description: 'Retrieves details of a specific notification. Can optionally include associated user plant data.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'optional Include associated user plants in the response.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'optional Include associated user plants in the response.'
+            example: true
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 29
+                    type: Nawożenie
+                    title: 'Ut dolores dignissimos facere natus.'
+                    message: 'Iusto facilis voluptatem architecto labore. Illo ducimus non qui voluptatum commodi ut exercitationem. Rerum animi hic excepturi saepe nisi dignissimos eveniet.'
+                    notification_date: '2024-01-24 03:54:35'
+                    sent_on: null
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 29
+                      type:
+                        type: string
+                        example: Nawożenie
+                      title:
+                        type: string
+                        example: 'Ut dolores dignissimos facere natus.'
+                      message:
+                        type: string
+                        example: 'Iusto facilis voluptatem architecto labore. Illo ducimus non qui voluptatum commodi ut exercitationem. Rerum animi hic excepturi saepe nisi dignissimos eveniet.'
+                      notification_date:
+                        type: string
+                        example: '2024-01-24 03:54:35'
+                      sent_on:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - Notification
+    put:
+      summary: 'Update a notification'
+      operationId: updateANotification
+      description: 'Updates the specified notification with provided details.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 30
+                    type: Inne
+                    title: 'Id qui velit officia nemo delectus sint.'
+                    message: 'Quod cum id unde animi quidem. Unde quas est ea qui aspernatur mollitia. Quidem et deleniti impedit assumenda deleniti facilis.'
+                    notification_date: '2024-01-26 03:51:57'
+                    sent_on: null
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 30
+                      type:
+                        type: string
+                        example: Inne
+                      title:
+                        type: string
+                        example: 'Id qui velit officia nemo delectus sint.'
+                      message:
+                        type: string
+                        example: 'Quod cum id unde animi quidem. Unde quas est ea qui aspernatur mollitia. Quidem et deleniti impedit assumenda deleniti facilis.'
+                      notification_date:
+                        type: string
+                        example: '2024-01-26 03:51:57'
+                      sent_on:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - Notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: 'The type of the notification.'
+                  example: null
+                title:
+                  type: string
+                  description: 'The title of the notification.'
+                  example: null
+                message:
+                  type: string
+                  description: 'nullable The message content of the notification.'
+                  example: null
+                notification_date:
+                  type: date
+                  description: 'The date and time for when the notification is scheduled.'
+                  example: null
+                sent_on:
+                  type: date
+                  description: 'Indicates if the notification has been read.'
+                  example: null
+              required:
+                - type
+                - title
+                - notification_date
+                - sent_on
+    delete:
+      summary: 'Delete a notification'
+      operationId: deleteANotification
+      description: 'Permanently deletes the specified notification from the database. This action is irreversible.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Notification
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the notification to retrieve.'
+        example: '1'
+        required: true
+        schema:
+          type: string
+  /api/v1/notification-types:
+    get:
+      summary: 'Get Notification Types'
+      operationId: getNotificationTypes
+      description: "Retrieves a list of all available notification types.\nThis endpoint is useful for understanding the different types of notifications that can be sent or received in the system."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Notification
+  /api/v1/plant:
+    get:
+      summary: 'Get all plants'
+      operationId: getAllPlants
+      description: 'Retrieves a list of plants with optional filters and includes for related user plants.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'Include associated user plants in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'Include associated user plants in the response.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Allows searching for plants by name or species.'
+          example: '"Ficus"'
+          required: false
+          schema:
+            type: string
+            description: 'Allows searching for plants by name or species.'
+            example: '"Ficus"'
+        -
+          in: query
+          name: 'name[eq]'
+          description: 'Filter by plant name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by plant name.'
+            example: null
+        -
+          in: query
+          name: 'species[eq]'
+          description: 'Filter by plant species.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by plant species.'
+            example: null
+        -
+          in: query
+          name: 'plant_type[eq]'
+          description: 'Filter by plant types.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by plant types.'
+            example: null
+        -
+          in: query
+          name: 'soil_type[eq]'
+          description: 'Filter by soil type.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by soil type.'
+            example: null
+        -
+          in: query
+          name: 'target_height[eq]'
+          description: 'Filter by target height (equal).'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by target height (equal).'
+            example: null
+        -
+          in: query
+          name: 'insolation[eq]'
+          description: 'Filter by insolation.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by insolation.'
+            example: null
+        -
+          in: query
+          name: 'cultivation_difficulty[eq]'
+          description: 'Filter by cultivation difficulty.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by cultivation difficulty.'
+            example: null
+        -
+          in: query
+          name: 'temperature[eq]'
+          description: 'Filter by temperature.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by temperature.'
+            example: null
+        -
+          in: query
+          name: 'air_humidity[eq]'
+          description: 'Filter by air humidity.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by air humidity.'
+            example: null
+        -
+          in: query
+          name: 'toxicity[eq]'
+          description: 'Filter by toxicity. Example:'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by toxicity. Example:'
+            example: null
+        -
+          in: query
+          name: 'ph[eq]'
+          description: 'Filter by soil pH. Example:'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by soil pH. Example:'
+            example: null
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Plant
+    post:
+      summary: 'Create a new plant'
+      operationId: createANewPlant
+      description: 'Stores a new plant record in the database.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Plant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: psvqpf
+                description:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: 'Et eligendi velit sed quia itaque dolor numquam illum.'
+                species:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: emcumbbiw
+                plant_type:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: nppxerdzkxrsznqbalnu
+                  enum:
+                    - 'Kaktusy i sukulenty'
+                    - 'Rośliny zielone'
+                    - 'Rośliny kwitnące'
+                    - 'Rośliny pnące i zwisające'
+                    - Palmy
+                    - Paprocie
+                    - Byliny
+                image:
+                  type: string
+                  description: 'Must be at least 6 characters. Must not be greater than 255 characters.'
+                  example: xugzdjqnhesgmyhnnc
+                soil_type:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: eimdhqq
+                  enum:
+                    - 'ziemia ogrodowa'
+                    - 'ziemia kompostowa'
+                    - 'ziemia żyzna i pruchnicza'
+                    - 'torf wysoki'
+                    - 'ziemia dla kaktusów i sukulentów'
+                    - 'podłoża dla storczyków'
+                    - 'podłoże do uprawy hydroponicznej'
+                target_height:
+                  type: string
+                  description: ''
+                  example: aut
+                insolation:
+                  type: string
+                  description: 'Must not be greater than 128 characters.'
+                  example: mdvmgitulgetfihjqtv
+                  enum:
+                    - 'pełne słońce'
+                    - półcień
+                    - cień
+                cultivation_difficulty:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 64 characters.'
+                  example: uvcqwuwhfzqyitprxcex
+                  enum:
+                    - łatwy
+                    - średni
+                    - trudny
+                temperature:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 64 characters.'
+                  example: qla
+                air_humidity:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 64 characters.'
+                  example: hcttvqpouscbkniuc
+                toxicity:
+                  type: integer
+                  description: ''
+                  example: 11
+                ph:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: ioxgyehtvguhoovfqgpnqzsrolqmx
+              required:
+                - name
+                - description
+                - species
+                - plant_type
+                - image
+                - soil_type
+                - target_height
+                - insolation
+                - cultivation_difficulty
+                - temperature
+                - air_humidity
+  '/api/v1/plant/{id}':
+    get:
+      summary: 'Show a plant'
+      operationId: showAPlant
+      description: 'Retrieves detailed information about a specific plant. Optionally includes related user plant data.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'optional Include associated user plants in the response.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'optional Include associated user plants in the response.'
+            example: true
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 49
+                    name: 'enim aut quis'
+                    description: 'Quos voluptates in temporibus ut magnam eum quo ut.'
+                    species: 'doloremque vel'
+                    plant_type: 'Rośliny kwitnące'
+                    image: 'https://via.placeholder.com/640x480.png/00bbee?text=libero'
+                    soil_type: 'podłoże do uprawy hydroponicznej'
+                    target_height: '53'
+                    insolation: półcień
+                    cultivation_difficulty: trudny
+                    temperature: '25°C - 31°C'
+                    air_humidity: '36% - 63%'
+                    toxicity: 2
+                    ph: '5.07 - 9.78'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 49
+                      name:
+                        type: string
+                        example: 'enim aut quis'
+                      description:
+                        type: string
+                        example: 'Quos voluptates in temporibus ut magnam eum quo ut.'
+                      species:
+                        type: string
+                        example: 'doloremque vel'
+                      plant_type:
+                        type: string
+                        example: 'Rośliny kwitnące'
+                      image:
+                        type: string
+                        example: 'https://via.placeholder.com/640x480.png/00bbee?text=libero'
+                      soil_type:
+                        type: string
+                        example: 'podłoże do uprawy hydroponicznej'
+                      target_height:
+                        type: string
+                        example: '53'
+                      insolation:
+                        type: string
+                        example: półcień
+                      cultivation_difficulty:
+                        type: string
+                        example: trudny
+                      temperature:
+                        type: string
+                        example: '25°C - 31°C'
+                      air_humidity:
+                        type: string
+                        example: '36% - 63%'
+                      toxicity:
+                        type: integer
+                        example: 2
+                      ph:
+                        type: string
+                        example: '5.07 - 9.78'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - Plant
+    put:
+      summary: 'Update a plant'
+      operationId: updateAPlant
+      description: 'Updates the details of an existing plant based on the provided information.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 50
+                    name: 'rem qui voluptas'
+                    description: 'Est cupiditate quas omnis quas est expedita.'
+                    species: 'aut dignissimos'
+                    plant_type: 'Rośliny pnące i zwisające'
+                    image: 'https://via.placeholder.com/640x480.png/008888?text=autem'
+                    soil_type: 'podłoże do uprawy hydroponicznej'
+                    target_height: '83'
+                    insolation: półcień
+                    cultivation_difficulty: trudny
+                    temperature: '11°C - 33°C'
+                    air_humidity: '42% - 56%'
+                    toxicity: 1
+                    ph: '5.91 - 9.68'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 50
+                      name:
+                        type: string
+                        example: 'rem qui voluptas'
+                      description:
+                        type: string
+                        example: 'Est cupiditate quas omnis quas est expedita.'
+                      species:
+                        type: string
+                        example: 'aut dignissimos'
+                      plant_type:
+                        type: string
+                        example: 'Rośliny pnące i zwisające'
+                      image:
+                        type: string
+                        example: 'https://via.placeholder.com/640x480.png/008888?text=autem'
+                      soil_type:
+                        type: string
+                        example: 'podłoże do uprawy hydroponicznej'
+                      target_height:
+                        type: string
+                        example: '83'
+                      insolation:
+                        type: string
+                        example: półcień
+                      cultivation_difficulty:
+                        type: string
+                        example: trudny
+                      temperature:
+                        type: string
+                        example: '11°C - 33°C'
+                      air_humidity:
+                        type: string
+                        example: '42% - 56%'
+                      toxicity:
+                        type: integer
+                        example: 1
+                      ph:
+                        type: string
+                        example: '5.91 - 9.68'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - Plant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: iyyy
+                description:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: 'Consequatur dolores dignissimos perferendis qui dolorem.'
+                species:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: thabzkkngbfzwbghigh
+                plant_type:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: junn
+                  enum:
+                    - 'Kaktusy i sukulenty'
+                    - 'Rośliny zielone'
+                    - 'Rośliny kwitnące'
+                    - 'Rośliny pnące i zwisające'
+                    - Palmy
+                    - Paprocie
+                    - Byliny
+                image:
+                  type: string
+                  description: 'Must be at least 6 characters. Must not be greater than 255 characters.'
+                  example: g
+                soil_type:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: nlxhybgsu
+                  enum:
+                    - 'ziemia ogrodowa'
+                    - 'ziemia kompostowa'
+                    - 'ziemia żyzna i pruchnicza'
+                    - 'torf wysoki'
+                    - 'ziemia dla kaktusów i sukulentów'
+                    - 'podłoża dla storczyków'
+                    - 'podłoże do uprawy hydroponicznej'
+                target_height:
+                  type: string
+                  description: ''
+                  example: id
+                insolation:
+                  type: string
+                  description: 'Must not be greater than 128 characters.'
+                  example: pzarqusbdcgepxxeayi
+                  enum:
+                    - 'pełne słońce'
+                    - półcień
+                    - cień
+                cultivation_difficulty:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 64 characters.'
+                  example: aosvcwsfzgs
+                  enum:
+                    - łatwy
+                    - średni
+                    - trudny
+                temperature:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 64 characters.'
+                  example: vygebmtzzu
+                air_humidity:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 64 characters.'
+                  example: ynivwmka
+                toxicity:
+                  type: integer
+                  description: ''
+                  example: 11
+                ph:
+                  type: string
+                  description: 'Must be at least 3 characters.'
+                  example: asqkgyrdvyfcwziirxuhaouhgikkhnialsgsal
+              required:
+                - name
+                - description
+                - species
+                - plant_type
+                - image
+                - soil_type
+                - target_height
+                - insolation
+                - cultivation_difficulty
+                - temperature
+                - air_humidity
+                - toxicity
+                - ph
+    delete:
+      summary: 'Delete a plant'
+      operationId: deleteAPlant
+      description: 'Removes a specified plant from the database.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Plant
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the plant.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/plant-types:
+    get:
+      summary: 'Get plant types'
+      operationId: getPlantTypes
+      description: "Returns an array of strings, each representing a distinct type of plant.\nThis endpoint is useful for populating dropdowns or filters in the UI."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Plant
+  /api/v1/soil-types:
+    get:
+      summary: 'Get Soil Types'
+      operationId: getSoilTypes
+      description: "Retrieves a list of all available soil types for plants.\nUseful for filters and understanding suitable soil conditions for different plants."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Plant
+  /api/v1/insolation-types:
+    get:
+      summary: 'Get Insolation Types'
+      operationId: getInsolationTypes
+      description: "Retrieves a list of all available insolation types.\nThis helps in understanding the amount and intensity of sunlight required by different plants."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Plant
+  /api/v1/difficulty-types:
+    get:
+      summary: 'Get Difficulty Types'
+      operationId: getDifficultyTypes
+      description: "Retrieves a list of different difficulty levels for growing and maintaining plants.\nUseful for users to select plants based on their gardening experience."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Plant
+  /api/v1/save-token:
+    post:
+      summary: 'Save Device Token'
+      operationId: saveDeviceToken
+      description: "Saves the FCM device token to the authenticated user's profile."
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Push notifications'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: 'The FCM device token to be saved.'
+                  example: your-device-token
+              required:
+                - token
+  /api/v1/send-notification:
+    post:
+      summary: 'Send a Push Notification'
+      operationId: sendAPushNotification
+      description: 'Sends a push notification to a specified device token using Firebase Cloud Messaging (FCM).'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Push notifications'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceToken:
+                  type: string
+                  description: 'The FCM device token of the target device.'
+                  example: quibusdam
+                title:
+                  type: string
+                  description: 'The title of the notification.'
+                  example: nulla
+                body:
+                  type: string
+                  description: 'The body text of the notification.'
+                  example: dolores
+  /api/v1/test-notification:
+    post:
+      summary: 'Send a Test Notification'
+      operationId: sendATestNotification
+      description: 'Sends a test push notification to a specified device token. This endpoint is useful for testing the push notification functionality in the development environment.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Push notifications'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: 'The FCM device token to which the test notification will be sent.'
+                  example: your-device-token
+              required:
+                - token
+  /api/v1/user:
+    get:
+      summary: 'Get all users'
+      operationId: getAllUsers
+      description: 'Retrieves a list of users with optional filters and includes for related user plants.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'Include associated user plants in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'Include associated user plants in the response.'
+            example: null
+        -
+          in: query
+          name: 'name[eq]'
+          description: 'Filter by user name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by user name.'
+            example: null
+        -
+          in: query
+          name: 'email[eq]'
+          description: 'Filter by email address.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by email address.'
+            example: null
+        -
+          in: query
+          name: 'email_verified_at[eq]'
+          description: 'datetime Filter by the exact date and time when the email was verified.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by the exact date and time when the email was verified.'
+            example: null
+        -
+          in: query
+          name: 'email_verified_at[lt]'
+          description: 'datetime Filter by email verified date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by email verified date being less than.'
+            example: null
+        -
+          in: query
+          name: 'email_verified_at[gt]'
+          description: 'datetime Filter by email verified date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by email verified date being greater than.'
+            example: null
+        -
+          in: query
+          name: 'created_at[eq]'
+          description: 'datetime Filter by exact creation date.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by exact creation date.'
+            example: null
+        -
+          in: query
+          name: 'created_at[lt]'
+          description: 'datetime Filter by creation date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by creation date being less than.'
+            example: null
+        -
+          in: query
+          name: 'created_at[gt]'
+          description: 'datetime Filter by creation date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by creation date being greater than.'
+            example: null
+        -
+          in: query
+          name: 'updated_at[eq]'
+          description: 'datetime Filter by exact update date.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by exact update date.'
+            example: null
+        -
+          in: query
+          name: 'updated_at[lt]'
+          description: 'datetime Filter by update date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by update date being less than.'
+            example: null
+        -
+          in: query
+          name: 'updated_at[gt]'
+          description: 'datetime Filter by update date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'datetime Filter by update date being greater than.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 42
+                      name: 'Karley Skiles'
+                      email: kreiger.gust@example.org
+                      email_verified_at: '2024-01-14T21:54:26.000000Z'
+                      created_at: '2024-01-14T21:54:26.000000Z'
+                      updated_at: '2024-01-14T21:54:26.000000Z'
+                    -
+                      id: 43
+                      name: 'Prof. Myron Stoltenberg MD'
+                      email: mbrown@example.com
+                      email_verified_at: '2024-01-14T21:54:26.000000Z'
+                      created_at: '2024-01-14T21:54:26.000000Z'
+                      updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 42
+                        name: 'Karley Skiles'
+                        email: kreiger.gust@example.org
+                        email_verified_at: '2024-01-14T21:54:26.000000Z'
+                        created_at: '2024-01-14T21:54:26.000000Z'
+                        updated_at: '2024-01-14T21:54:26.000000Z'
+                      -
+                        id: 43
+                        name: 'Prof. Myron Stoltenberg MD'
+                        email: mbrown@example.com
+                        email_verified_at: '2024-01-14T21:54:26.000000Z'
+                        created_at: '2024-01-14T21:54:26.000000Z'
+                        updated_at: '2024-01-14T21:54:26.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 42
+                        name:
+                          type: string
+                          example: 'Karley Skiles'
+                        email:
+                          type: string
+                          example: kreiger.gust@example.org
+                        email_verified_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+                        created_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - User
+  '/api/v1/user/{id}':
+    get:
+      summary: 'Get a single user'
+      operationId: getASingleUser
+      description: 'Retrieves the details of a specific user and optionally includes related user plant data.'
+      parameters:
+        -
+          in: query
+          name: includeUserPlants
+          description: 'optional Include associated user plants in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'optional Include associated user plants in the response.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 44
+                    name: 'Nettie Sanford'
+                    email: kschmitt@example.net
+                    email_verified_at: '2024-01-14T21:54:26.000000Z'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 44
+                      name:
+                        type: string
+                        example: 'Nettie Sanford'
+                      email:
+                        type: string
+                        example: kschmitt@example.net
+                      email_verified_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - User
+    put:
+      summary: 'Update a user'
+      operationId: updateAUser
+      description: "Updates the specified user's details. Fields are updated only if they are provided."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 45
+                    name: 'Fatima Heathcote'
+                    email: karlie77@example.com
+                    email_verified_at: '2024-01-14T21:54:26.000000Z'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 45
+                      name:
+                        type: string
+                        example: 'Fatima Heathcote'
+                      email:
+                        type: string
+                        example: karlie77@example.com
+                      email_verified_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: lnvoikznhtzpvjhi
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: dominique28@example.net
+                current_password:
+                  type: string
+                  description: 'The current password of the user for verification.'
+                  example: currentPassword123
+                password:
+                  type: string
+                  description: ''
+                  example: qui
+                password_confirmation:
+                  type: string
+                  description: 'required_with:password The confirmation of the new password.'
+                  example: newPassword123
+              required:
+                - name
+                - email
+                - current_password
+                - password
+    delete:
+      summary: 'Delete a user'
+      operationId: deleteAUser
+      description: 'Permanently deletes the specified user from the database. This action is irreversible.'
+      parameters: []
+      responses: {  }
+      tags:
+        - User
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user to retrieve.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/auth/logout:
+    post:
+      summary: 'Logout user'
+      operationId: logoutUser
+      description: 'Logs out the specified user by invalidating their access token.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User successfully logged out'
+                properties:
+                  message:
+                    type: string
+                    example: 'User successfully logged out'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'User not found'
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  description: 'The ID of the user to log out.'
+                  example: 2
+              required:
+                - userId
+  /api/auth/register:
+    post:
+      summary: 'Register User'
+      operationId: registerUser
+      description: 'Register a new user.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'User Created Successfully'
+                  token: 'API TOKEN'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'User Created Successfully'
+                  token:
+                    type: string
+                    example: 'API TOKEN'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'Validation error'
+                  errors: {  }
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Validation error'
+                  errors:
+                    type: object
+                    properties: {  }
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'Internal Server Error'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The user's name."
+                  example: natus
+                email:
+                  type: string
+                  description: "The user's email address."
+                  example: hhickle@example.org
+                password:
+                  type: string
+                  description: "The user's password."
+                  example: ':}K*wGk&'
+                password_confirmation:
+                  type: string
+                  description: "Confirm the user's password."
+                  example: null
+              required:
+                - name
+                - email
+                - password
+                - password_confirmation
+  /api/auth/login:
+    post:
+      summary: 'Login User'
+      operationId: loginUser
+      description: 'Log in a user.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: 'User Logged In Successfully'
+                  token: 'API TOKEN'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'User Logged In Successfully'
+                  token:
+                    type: string
+                    example: 'API TOKEN'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'Email & Password does not match with our record.'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Email & Password does not match with our record.'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  message: 'Internal Server Error'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "The user's email address."
+                  example: ygleichner@example.com
+                password:
+                  type: string
+                  description: "The user's password."
+                  example: 'FC|9NEA.7"'
+              required:
+                - email
+                - password
+  /api/forgot-password:
+    post:
+      summary: 'Forgot Password'
+      operationId: forgotPassword
+      description: 'Request a password reset link for a user with the given email.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: passwords.sent
+                properties:
+                  status:
+                    type: string
+                    example: passwords.sent
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Nie udało się wysłać linku resetującego hasło.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Nie udało się wysłać linku resetującego hasło.'
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: required
+                  description: 'The email address of the user.'
+                  example: user@example.com
+  '/api/verify-email/{id}/{hash}':
+    get:
+      summary: "Verify a user's email address."
+      operationId: verifyAUsersEmailAddress
+      description: 'Verify the email address of a registered user using the provided $userId and $hash.'
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\User] quos'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\User] quos'
+      tags:
+        - 'User Authentication'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the verify email.'
+        example: quos
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: hash
+        description: ''
+        example: error
+        required: true
+        schema:
+          type: string
+  /reset-password:
+    post:
+      summary: 'Reset Password'
+      operationId: resetPassword
+      description: "Reset the user's password."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Hasło zostało zresetowane.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Hasło zostało zresetowane.'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Nie udało się zresetować hasła.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Nie udało się zresetować hasła.'
+      tags:
+        - 'User Authentication'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: 'The token received in the password reset email.'
+                  example: nesciunt
+                email:
+                  type: string
+                  description: "The user's email address."
+                  example: rey.lind@example.org
+                password:
+                  type: string
+                  description: 'The new password.'
+                  example: "l@V}gP6BwIo^g'*"
+                password_confirmation:
+                  type: string
+                  description: 'The new password confirmation.'
+                  example: doloribus
+              required:
+                - token
+                - email
+                - password
+                - password_confirmation
+  /api/v1/userPlant:
+    get:
+      summary: 'Get all user plants'
+      operationId: getAllUserPlants
+      description: 'Retrieves a list of user plants with optional filters and includes for related entities.'
+      parameters:
+        -
+          in: query
+          name: includePlant
+          description: 'Include associated plant in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'Include associated plant in the response.'
+            example: null
+        -
+          in: query
+          name: includeUser
+          description: 'Include associated user in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'Include associated user in the response.'
+            example: null
+        -
+          in: query
+          name: includeNotes
+          description: 'Include associated notes in the response.'
+          example: null
+          required: false
+          schema:
+            type: boolean
+            description: 'Include associated notes in the response.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Allows searching for plants by name or species.'
+          example: '"Ficus"'
+          required: false
+          schema:
+            type: string
+            description: 'Allows searching for plants by name or species.'
+            example: '"Ficus"'
+        -
+          in: query
+          name: 'user_id[eq]'
+          description: 'Filter by user ID.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by user ID.'
+            example: null
+        -
+          in: query
+          name: 'plant_id[eq]'
+          description: 'Filter by plant ID.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by plant ID.'
+            example: null
+        -
+          in: query
+          name: 'custom_name[eq]'
+          description: 'Filter by custom name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by custom name.'
+            example: null
+        -
+          in: query
+          name: 'location[eq]'
+          description: 'Filter by location.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by location.'
+            example: null
+        -
+          in: query
+          name: 'last_watered[eq]'
+          description: 'Filter by exact last watered date.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact last watered date.'
+            example: null
+        -
+          in: query
+          name: 'last_watered[lt]'
+          description: 'Filter by last watered date being less than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by last watered date being less than.'
+            example: null
+        -
+          in: query
+          name: 'last_watered[gt]'
+          description: 'Filter by last watered date being greater than.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by last watered date being greater than.'
+            example: null
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 21
+                      user_id: 1
+                      plant_id: 43
+                      custom_name: 'amet non optio'
+                      location: inna
+                      last_watered: '2024-01-02 11:09:25'
+                      created_at: '2024-01-14T21:54:26.000000Z'
+                      updated_at: '2024-01-14T21:54:26.000000Z'
+                    -
+                      id: 22
+                      user_id: 39
+                      plant_id: 2
+                      custom_name: 'voluptates voluptatem neque'
+                      location: balkon
+                      last_watered: '2024-01-03 08:56:40'
+                      created_at: '2024-01-14T21:54:26.000000Z'
+                      updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 21
+                        user_id: 1
+                        plant_id: 43
+                        custom_name: 'amet non optio'
+                        location: inna
+                        last_watered: '2024-01-02 11:09:25'
+                        created_at: '2024-01-14T21:54:26.000000Z'
+                        updated_at: '2024-01-14T21:54:26.000000Z'
+                      -
+                        id: 22
+                        user_id: 39
+                        plant_id: 2
+                        custom_name: 'voluptates voluptatem neque'
+                        location: balkon
+                        last_watered: '2024-01-03 08:56:40'
+                        created_at: '2024-01-14T21:54:26.000000Z'
+                        updated_at: '2024-01-14T21:54:26.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 21
+                        user_id:
+                          type: integer
+                          example: 1
+                        plant_id:
+                          type: integer
+                          example: 43
+                        custom_name:
+                          type: string
+                          example: 'amet non optio'
+                        location:
+                          type: string
+                          example: inna
+                        last_watered:
+                          type: string
+                          example: '2024-01-02 11:09:25'
+                        created_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - UserPlants
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                includePlant:
+                  type: boolean
+                  description: ''
+                  example: true
+                includeNotes:
+                  type: boolean
+                  description: ''
+                  example: false
+                includeUser:
+                  type: boolean
+                  description: ''
+                  example: false
+    post:
+      summary: "Store a newly created user's plant in storage."
+      operationId: storeANewlyCreatedUsersPlantInStorage
+      description: "Creates and stores a new user's plant in the database."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 23
+                    user_id: 23
+                    plant_id: 6
+                    custom_name: 'repellendus velit veritatis'
+                    location: łazienka
+                    last_watered: '2024-01-02 12:32:59'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 23
+                      user_id:
+                        type: integer
+                        example: 23
+                      plant_id:
+                        type: integer
+                        example: 6
+                      custom_name:
+                        type: string
+                        example: 'repellendus velit veritatis'
+                      location:
+                        type: string
+                        example: łazienka
+                      last_watered:
+                        type: string
+                        example: '2024-01-02 12:32:59'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - UserPlants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 3
+                plant_id:
+                  type: integer
+                  description: ''
+                  example: 10
+                custom_name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: oklknckkyjwayar
+                location:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 128 characters.'
+                  example: rmsoshwaurrmwiwrmgkycydps
+                  enum:
+                    - kuchnia
+                    - łazienka
+                    - sypialnia
+                    - salon
+                    - korytarz
+                    - 'pokój dzieci'
+                    - 'pokój gościnny'
+                    - biuro
+                    - balkon
+                    - inna
+                last_watered:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-01-14T21:54:26'
+              required:
+                - plant_id
+  '/api/v1/userPlant/{id}':
+    get:
+      summary: 'Get a single UserPlant with relations'
+      operationId: getASingleUserPlantWithRelations
+      description: 'Retrieve a single UserPlant and optionally include its related entities such as notes and user details.'
+      parameters:
+        -
+          in: query
+          name: includePlant
+          description: 'Optional parameter to include plant details.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Optional parameter to include plant details.'
+            example: true
+        -
+          in: query
+          name: includeNotes
+          description: 'Optional parameter to include plant notes.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Optional parameter to include plant notes.'
+            example: true
+        -
+          in: query
+          name: includeUser
+          description: 'Optional parameter to include user details.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Optional parameter to include user details.'
+            example: true
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 24
+                    user_id: 28
+                    plant_id: 42
+                    custom_name: 'quo sit impedit'
+                    location: 'pokój dzieci'
+                    last_watered: '2024-01-01 12:05:41'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 24
+                      user_id:
+                        type: integer
+                        example: 28
+                      plant_id:
+                        type: integer
+                        example: 42
+                      custom_name:
+                        type: string
+                        example: 'quo sit impedit'
+                      location:
+                        type: string
+                        example: 'pokój dzieci'
+                      last_watered:
+                        type: string
+                        example: '2024-01-01 12:05:41'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - UserPlants
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                includePlant:
+                  type: boolean
+                  description: ''
+                  example: true
+                includeNotes:
+                  type: boolean
+                  description: ''
+                  example: true
+                includeUser:
+                  type: boolean
+                  description: ''
+                  example: true
+    put:
+      summary: 'Update a UserPlant'
+      operationId: updateAUserPlant
+      description: 'Update the details of a UserPlant with given ID. Allows updating the associated plant, user, custom name, location, and last watered date.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 25
+                    user_id: 38
+                    plant_id: 8
+                    custom_name: 'reprehenderit libero iure'
+                    location: sypialnia
+                    last_watered: '2024-01-06 22:48:03'
+                    created_at: '2024-01-14T21:54:26.000000Z'
+                    updated_at: '2024-01-14T21:54:26.000000Z'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 25
+                      user_id:
+                        type: integer
+                        example: 38
+                      plant_id:
+                        type: integer
+                        example: 8
+                      custom_name:
+                        type: string
+                        example: 'reprehenderit libero iure'
+                      location:
+                        type: string
+                        example: sypialnia
+                      last_watered:
+                        type: string
+                        example: '2024-01-06 22:48:03'
+                      created_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2024-01-14T21:54:26.000000Z'
+      tags:
+        - UserPlants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 20
+                plant_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                custom_name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: pghxhlryffcvomvhsfho
+                location:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 128 characters.'
+                  example: sbqvfvnjrat
+                  enum:
+                    - kuchnia
+                    - łazienka
+                    - sypialnia
+                    - salon
+                    - korytarz
+                    - 'pokój dzieci'
+                    - 'pokój gościnny'
+                    - biuro
+                    - balkon
+                    - inna
+                last_watered:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-01-14T21:54:26'
+              required:
+                - user_id
+                - plant_id
+                - custom_name
+                - location
+                - last_watered
+    delete:
+      summary: 'Remove a UserPlant'
+      operationId: removeAUserPlant
+      description: 'Removes a specified UserPlant resource from storage.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Roślina użytkownika została pomyślnie usunięty.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Roślina użytkownika została pomyślnie usunięty.'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Nie znaleziono rośliny użytkownika o podanym identyfikatorze.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Nie znaleziono rośliny użytkownika o podanym identyfikatorze.'
+      tags:
+        - UserPlants
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the userPlant.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/userPlant-locations:
+    get:
+      summary: 'Get Available Locations'
+      operationId: getAvailableLocations
+      description: "Retrieves a list of all available locations where plants can be placed or are being maintained.\nThis endpoint is useful for users looking to understand where they can place or find their plants."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - UserPlants
+  '/api/v1/users/{user_id}/roles':
+    post:
+      summary: 'Add a role to a user'
+      operationId: addARoleToAUser
+      description: 'Assigns a specified role to a user. Only accessible by administrators.'
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Role added successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Role added successfully'
+        404:
+          description: 'role not found'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Role not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Role not found'
+      tags:
+        - 'User Roles'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+                  description: 'The name of the role to assign to the user.'
+                  example: editor
+              required:
+                - role
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/users/{user_id}/roles/{role_id}':
+    delete:
+      summary: 'Remove a role from a user'
+      operationId: removeARoleFromAUser
+      description: 'Detaches a specified role from a user. Only accessible by administrators.'
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Role removed successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Role removed successfully'
+      tags:
+        - 'User Roles'
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: role_id
+        description: 'The ID of the role.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Note
+    description: "\nApi for notes management"
+  -
+    name: Notification
+    description: "\nApi for notifications management"
+  -
+    name: Plant
+    description: "\nApi for plants management"
+  -
+    name: 'Push notifications'
+    description: ''
+  -
+    name: User
+    description: "\nApi for users management"
+  -
+    name: 'User Authentication'
+    description: 'User authentication endpoints.'
+  -
+    name: UserPlants
+    description: "\nApi for user plants management"
+  -
+    name: 'User Roles'
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token can be obtained by contacting the administrator.'
+security:
+  -
+    default: []
